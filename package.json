@@ -49,7 +49,9 @@
     "files": [
       "src/**/*",
       "node_modules/**/*",
-      "package.json"
+      "package.json",
+      "!node_modules/**/*.d.ts",
+      "!node_modules/**/*.map"
     ],
     "win": {
       "target": "nsis"
