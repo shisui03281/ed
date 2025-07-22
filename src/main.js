@@ -52,12 +52,28 @@ app.on('window-all-closed', () => {
 });
 
 // アップデーターのイベントを監視
-autoUpdater.on('update-available', () => {
-  console.log('アップデートが見つかりました。');
+autoUpdater.on('checking-for-update', () => {
+  console.log('アップデートをチェック中...');
 });
 
-autoUpdater.on('update-downloaded', () => {
-  console.log('アップデートのダウンロードが完了しました。再起動してインストールします。');
+autoUpdater.on('update-available', (info) => {
+  console.log('アップデートが見つかりました:', info);
+});
+
+autoUpdater.on('update-not-available', (info) => {
+  console.log('アップデートはありません:', info);
+});
+
+autoUpdater.on('error', (err) => {
+  console.log('アップデートエラー:', err);
+});
+
+autoUpdater.on('download-progress', (progressObj) => {
+  console.log('ダウンロード進捗:', progressObj);
+});
+
+autoUpdater.on('update-downloaded', (info) => {
+  console.log('アップデートのダウンロードが完了しました。再起動してインストールします:', info);
   autoUpdater.quitAndInstall();
 });
 
