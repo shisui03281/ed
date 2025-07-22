@@ -1,7 +1,7 @@
 {
   "name": "electron-test",
   "productName": "Electron Test App",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "My Electron application description",
   "main": "src/main.js",
   "scripts": {
@@ -54,6 +54,10 @@
     "win": {
       "target": "nsis"
     },
+    "linux": {
+      "target": "AppImage",
+      "category": "Utility"
+    },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
@@ -62,7 +66,8 @@
     "publish": {
       "provider": "github",
       "owner": "shisui03281",
-      "repo": "ed"
+      "repo": "ed",
+      "releaseType": "release"
     }
   }
 }
