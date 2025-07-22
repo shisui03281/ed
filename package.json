@@ -1,6 +1,6 @@
 {
-  "name": "electron test",
-  "productName": "electron test",
+  "name": "electron-test",
+  "productName": "Electron Test App",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": ".webpack/main",
@@ -37,6 +37,7 @@
     "style-loader": "^3.3.4"
   },
   "dependencies": {
+    "canvas": "^3.1.2",
     "electron-squirrel-startup": "^1.0.1",
     "electron-updater": "^6.2.0"
   },
@@ -62,7 +63,7 @@
     "publish": {
       "provider": "github",
       "owner": "shisui03281",
-      "repo": "electron-test"
+      "repo": "ed"
     }
   }
 }
