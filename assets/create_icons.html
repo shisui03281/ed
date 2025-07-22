@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Icon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .icon-container {
+            display: inline-block;
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .twitter-icon {
+            width: 256px;
+            height: 256px;
+            background: #1DA1F2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .twitter-bird {
+            width: 150px;
+            height: 150px;
+            fill: white;
+        }
+        .download-btn {
+            background: #1DA1F2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        .download-btn:hover {
+            background: #1991db;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Twitter Icon Generator for Electron App</h1>
+    
+    <div class="icon-container">
+        <h3>App Icon (256x256)</h3>
+        <div class="twitter-icon">
+            <svg class="twitter-bird" viewBox="0 0 24 24">
+                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+            </svg>
+        </div>
+        <button class="download-btn" onclick="downloadIcon('app')">Download App Icon</button>
+    </div>
+
+    <div class="icon-container">
+        <h3>Installer Icon (256x256)</h3>
+        <div class="twitter-icon" style="background: #14171A;">
+            <svg class="twitter-bird" viewBox="0 0 24 24">
+                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+            </svg>
+        </div>
+        <button class="download-btn" onclick="downloadIcon('installer')">Download Installer Icon</button>
+    </div>
+
+    <div>
+        <h3>Preview</h3>
+        <canvas id="appCanvas" width="256" height="256"></canvas>
+        <canvas id="installerCanvas" width="256" height="256"></canvas>
+    </div>
+
+    <script>
+        function createIcon(type) {
+            const canvas = document.getElementById(type + 'Canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 背景色を設定
+            if (type === 'app') {
+                ctx.fillStyle = '#1DA1F2'; // Twitter Blue
+            } else {
+                ctx.fillStyle = '#14171A'; // Twitter Dark
+            }
+            
+            // 円形の背景を描画
+            ctx.beginPath();
+            ctx.arc(128, 128, 128, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Twitterの鳥のアイコンを描画（簡略化）
+            ctx.fillStyle = 'white';
+            ctx.font = '120px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('𝕏', 128, 128); // X (旧Twitter)のシンボル
+        }
+
+        function downloadIcon(type) {
+            const canvas = document.getElementById(type + 'Canvas');
+            const link = document.createElement('a');
+            link.download = type === 'app' ? 'icon.ico' : 'installerIcon.ico';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // ページ読み込み時にアイコンを生成
+        window.onload = function() {
+            createIcon('app');
+            createIcon('installer');
+        };
+    </script>
+</body>
+</html> 
