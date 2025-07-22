@@ -8,5 +8,17 @@
   <body>
     <h1>💖 Hello World!</h1>
     <p>Welcome to your Electron application.</p>
+    <p><strong>Version:</strong> <span id="version">Loading...</span></p>
+    <script>
+      // バージョン情報を表示
+      window.addEventListener('DOMContentLoaded', () => {
+        if (window.electronAPI) {
+          const version = window.electronAPI.getVersion();
+          document.getElementById('version').textContent = version;
+        } else {
+          document.getElementById('version').textContent = '1.0.8';
+        }
+      });
+    </script>
   </body>
 </html>
