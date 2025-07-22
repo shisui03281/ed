@@ -54,20 +54,11 @@
     "win": {
       "target": "nsis"
     },
-    "linux": {
-      "target": "AppImage",
-      "category": "Utility"
-    },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true
     },
-    "publish": {
-      "provider": "github",
-      "owner": "shisui03281",
-      "repo": "ed",
-      "releaseType": "release"
-    }
+    "publish": null
   }
 }
